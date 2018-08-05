@@ -3,7 +3,7 @@
 
 /**
  * GetCh courtesy of user 'unoriginal' from http://www.cplusplus.com/forum/articles/19975/
- * 			due to getchar() unable to obtain 1 character at a time, and conio.h's getch()
+ * 			due to getchar() unable to process 1 character at a time, and conio.h's getch()
  * 			not working and crashing.
  */
 CHAR GetCh (VOID)
