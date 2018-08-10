@@ -1,5 +1,5 @@
 /**
- * horizontal histogram of length of words
+ * vertical histogram of word lengths
  */
 
 #include <stdio.h>
@@ -46,16 +46,6 @@ int main() {
 	}
 
 	printf("\nhistogram of word lengths in test.txt\n\n");
-	for (int i = 0; i < numLengths; i++) {
-		if (i == numLengths - 1)
-			printf("\n%2d+:", i+1);
-		else
-			printf("\n %2d:", i+1);
-		for (int j = 0; j < wordLengths[i]; j++) {
-			printf("-");
-		}
-		printf(" (%d)", wordLengths[i]);
-	}
 
 	return 0;
 }
