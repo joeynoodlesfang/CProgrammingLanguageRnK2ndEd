@@ -1,0 +1,58 @@
+/**
+ * horizontal histogram of length of words
+ */
+
+#include <stdio.h>
+#define FALSE 0
+#define TRUE 1
+
+int main() {
+	int numLengths = 10;
+	int wordLengths[numLengths];
+	for (int i = 0; i < numLengths; i++) {
+		wordLengths[i] = 0;
+	}
+	int c = 0;
+	int length = 0;
+	int inAWord = FALSE;
+	FILE *fp = fopen("test.txt", "r");
+	if (fp == NULL) {
+		perror("cannot open file");
+		getchar();
+		return -1;
+	}
+	while ( (c=fgetc(fp)) != EOF) {
+		if ( (((c-'A') >= 0) && ((c-'Z') <= 0)) ||
+			 (((c-'a') >= 0) && ((c-'z') <= 0)) ||
+			 (((c-'0') >= 0) && ((c-'9') <= 0)) ) {
+			if (inAWord == FALSE) {
+				inAWord = TRUE;
+			}
+			else {
+				length++;
+			}
+		}
+		else {
+			if (inAWord == TRUE) {
+				if (length > numLengths) {
+					length = numLengths;
+				}
+				inAWord = FALSE;
+				wordLengths[length]++;
+				length = 0;
+			}
+		}
+	}
+
+	for (int i = 0; i < numLengths; i++) {
+		if (i == numLengths - 1)
+			printf("\n%2d+:", i+1);
+		else
+			printf("\n %2d:", i+1);
+		for (int j = 0; j < wordLengths[i]; j++) {
+			printf("-");
+		}
+	}
+
+	return 0;
+}

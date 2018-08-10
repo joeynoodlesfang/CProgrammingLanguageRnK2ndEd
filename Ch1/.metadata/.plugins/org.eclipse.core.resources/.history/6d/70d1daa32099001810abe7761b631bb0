@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main() {
+	printf("HUH");
+	int c = 0;
+	char* buff = malloc(255);
+	FILE *fp = fopen("T:\\take\\CProgrammingLanguageRnK2ndEd\\Ch1\\1-12\\test.txt", "r");
+	if (fp == NULL) {
+		perror("Error in opening file - taking keyboard inputs instead");
+
+		while ((c = getchar()) != EOF) {
+			printf("%c", c);
+			if (c == '\t' || c == ' ') {
+				printf("\n");
+			}
+		}
+		printf("\n\nwe done!");
+		getchar();
+		return 0;
+	}
+	printf("LOL");
+
+	while (fscanf(fp, "%s", buff) != EOF) {
+		printf("%s\n", buff);
+	}
+	printf("\n\nwe done!");
+	fclose(fp);
+	getchar();
+	return 0;
+}

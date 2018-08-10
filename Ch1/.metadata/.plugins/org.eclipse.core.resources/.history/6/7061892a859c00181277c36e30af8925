@@ -1,0 +1,23 @@
+/**
+ * horizontal histogram of length of words
+ */
+
+#include <stdio.h>
+
+int main() {
+	int wordLength[10];
+	int c = 0;
+	FILE *fp = fopen("test.txt", "r");
+	if (fp == NULL) {
+		perror("cannot open file");
+		getchar();
+		return -1;
+	}
+	while ( (c=fgetc(fp)) != EOF) {
+		if ( (((c-'A') >= 0) && ((c-'Z') <= 0))
+			 || (((c-'a') >= 0) && (c-'z') <= 0 )))
+
+	}
+
+	return 0;
+}
