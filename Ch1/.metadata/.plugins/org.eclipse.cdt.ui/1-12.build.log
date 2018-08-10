@@ -1,6 +1,0 @@
-20:33:14 **** Incremental Build of configuration Debug for project 1-12 ****
-Info: Internal Builder is used for build
-gcc -o 1-12.exe 1-12.o 
-
-20:33:14 Build Finished (took 614ms)
-
