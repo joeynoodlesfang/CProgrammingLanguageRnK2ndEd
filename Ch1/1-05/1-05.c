@@ -1,5 +1,9 @@
+/*
+ * printing fahr celsius from 300 to 0 instead of 0 to 300
+ */
+
 #include <stdio.h>
-/* print Fahrenheit-Celsius table */
+
 main() {
 	int fahr;
 	for (fahr = 300; fahr >= 0; fahr -= 20)

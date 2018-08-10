@@ -1,5 +1,5 @@
 /**
- * adding headings
+ * adding headings to fahr and celsius table
  */
 #include <stdio.h>
 /* print Fahrenheit-Celsius table

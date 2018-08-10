@@ -1,3 +1,7 @@
+/**
+ * printf input one word per line
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 int main() {

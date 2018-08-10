@@ -1,3 +1,7 @@
+/**
+ * program to print value of eof
+ */
+
 #include <stdio.h>
 
 int main() {

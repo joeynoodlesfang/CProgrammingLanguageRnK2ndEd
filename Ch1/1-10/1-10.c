@@ -1,3 +1,8 @@
+/**
+ * copies input to output, converting tabs, backspace, backslash inputs into
+ * \t, \b, and \
+ */
+
 #include <stdio.h>
 #include <windows.h>
 

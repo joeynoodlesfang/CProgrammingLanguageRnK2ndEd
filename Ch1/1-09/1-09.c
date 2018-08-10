@@ -1,3 +1,7 @@
+/**
+ * copies input into output, and replaces 1+ blanks with 1 blank
+ */
+
 #include <stdio.h>
 #include <windows.h>
 
