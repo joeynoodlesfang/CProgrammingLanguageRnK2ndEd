@@ -3,14 +3,15 @@
  */
 
 #include <stdio.h>
+#include <string.h>
 #define FALSE 0
 #define TRUE 1
 
 int main() {
-	int numLengths = 10;
-	int wordLengths[numLengths];
-	for (int i = 0; i < numLengths; i++) {
-		wordLengths[i] = 0;
+	int numEleWordLen = 10;
+	int wordLen[numEleWordLen];
+	for (int i = 0; i < numEleWordLen; i++) {
+		wordLen[i] = 0;
 	}
 	int c = 0;
 	int length = 0;
@@ -26,26 +27,59 @@ int main() {
 		if ( (((c-'A') >= 0) && ((c-'Z') <= 0)) ||
 			 (((c-'a') >= 0) && ((c-'z') <= 0)) ||
 			 (((c-'0') >= 0) && ((c-'9') <= 0)) ) {
+			length++;
 			if (inAWord == FALSE) {
 				inAWord = TRUE;
-			}
-			else {
-				length++;
 			}
 		}
 		else {
 			if (inAWord == TRUE) {
-				if (length > numLengths - 1) {
-					length = numLengths - 1;
+				if (length > numEleWordLen) {
+					length = numEleWordLen;
 				}
 				inAWord = FALSE;
-				wordLengths[length]++;
+				wordLen[length-1]++;
 				length = 0;
 			}
 		}
 	}
 
-	printf("\nhistogram of word lengths in test.txt\n\n");
+	int largestValWordLen = 0;
+	for (int i = 0; i < numEleWordLen; i++) {
+		if (largestValWordLen < wordLen[i])
+			largestValWordLen = wordLen[i];
+	}
 
+	printf("%d", largestValWordLen);
+	//2. +1 to longest
+	int lineCount, totalRowsWordLen;
+	lineCount = totalRowsWordLen = largestValWordLen + 1;
+	//3. for int i < longest+1:
+	printf("\nHISTOGRAM OF WORD LENGTHS IN test.txt\n\n");
+	for (int row = 0; row < totalRowsWordLen; row++) {
+		printf("\n");
+		lineCount--;
+		for (int col = 0; col < numEleWordLen; col++) {
+			if (lineCount > wordLen[col])
+				printf("     ");
+			else if (lineCount == wordLen[col])
+				printf("%5d", wordLen[col]);
+			else
+				printf("    |");
+		}
+
+	}
+	printf("\n");
+	for (int col = 0; col < numEleWordLen; col++) {
+		printf("-----");
+	}
+	printf("\n");
+	for (int col = 0; col < numEleWordLen; col++) {
+		printf("%5d", col+1);
+	}
+	printf("\n");
+	for (int i=0 ; i < ((numEleWordLen*5/2)-(12 / 2)); i++)
+		printf(" ");
+	printf("word lengths");
 	return 0;
 }

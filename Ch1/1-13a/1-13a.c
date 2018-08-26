@@ -7,9 +7,9 @@
 #define TRUE 1
 
 int main() {
-	int numLengths = 10;
-	int wordLengths[numLengths];
-	for (int i = 0; i < numLengths; i++) {
+	int arrSizeWordLengths = 10;
+	int wordLengths[arrSizeWordLengths];
+	for (int i = 0; i < arrSizeWordLengths; i++) {
 		wordLengths[i] = 0;
 	}
 	int c = 0;
@@ -26,31 +26,29 @@ int main() {
 		if ( (((c-'A') >= 0) && ((c-'Z') <= 0)) ||
 			 (((c-'a') >= 0) && ((c-'z') <= 0)) ||
 			 (((c-'0') >= 0) && ((c-'9') <= 0)) ) {
+			length++;
 			if (inAWord == FALSE) {
 				inAWord = TRUE;
-			}
-			else {
-				length++;
 			}
 		}
 		else {
 			if (inAWord == TRUE) {
-				if (length > numLengths - 1) {
-					length = numLengths - 1;
+				if (length > arrSizeWordLengths) {
+					length = arrSizeWordLengths;
 				}
 				inAWord = FALSE;
-				wordLengths[length]++;
+				wordLengths[length-1]++;
 				length = 0;
 			}
 		}
 	}
 
 	printf("\nhistogram of word lengths in test.txt\n\n");
-	for (int i = 0; i < numLengths; i++) {
-		if (i == numLengths - 1)
-			printf("\n%2d+:", i+1);
+	for (int i = 0; i < arrSizeWordLengths; i++) {
+		if (i == arrSizeWordLengths - 1)
+			printf("\n%2d+:", i + 1);
 		else
-			printf("\n %2d:", i+1);
+			printf("\n %2d:", i + 1);
 		for (int j = 0; j < wordLengths[i]; j++) {
 			printf("-");
 		}
