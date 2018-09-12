@@ -46,8 +46,9 @@ int openFile(FILE **fp) {
 int determineLineLen(FILE **fp, char currLine[]) {
 	int len, c;
 	len = c = 0;
-	for (len = 0; ((c = fgetc(*fp)) != EOF) && (c != '\n') && (len < MAXLINE-1); len++)
+	for (len = 0; ((c = fgetc(*fp)) != EOF) && (c != '\n') && (len < MAXLINE-1); len++) {
 		currLine[len] = (char)c;
+	}
 	currLine[len] = '\0';
 	return len;
 }
