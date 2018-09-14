@@ -7,7 +7,7 @@
  *			trigger a tab replacement (ie slightly less of the code to go through)
  *
  * notables			getchar, structs,
- * modifications	will not write entab, since short single-purpose code can be used
+ * modifications	will not write entab, but will write for the purpose
  * 					not accounting for a trillion spaces
  */
 
@@ -22,7 +22,7 @@ struct spaceTabs calcNumSpacesAndTabs (int currPos, int spaceCounter);
 int main(void) {
 	int posCounter = 0;
 	int spaceCounter = 0;
-	struct spaceTabs spaceTab = {0};
+	struct spaceTabs numSpaceTab = {0};
 	int c = 0;
 	while ((c = getchar()) != EOF) {
 		if (c == '\n' || c == EOF) {
@@ -33,12 +33,12 @@ int main(void) {
 			spaceCounter++;
 		} else {
 			if (spaceCounter != 0) {
-				spaceTab = calcNumSpacesAndTabs(posCounter, spaceCounter);
+				numSpaceTab = calcNumSpacesAndTabs(posCounter, spaceCounter);
 				posCounter+=spaceCounter;
-				for (int i = 0; i < spaceTab.tabs; i++) {
+				for (int i = 0; i < numSpaceTab.tabs; i++) {
 					printf("\t");
 				}
-				for (int i = 0; i < spaceTab.spaces; i++) {
+				for (int i = 0; i < numSpaceTab.spaces; i++) {
 					printf(" ");
 				}
 			}
