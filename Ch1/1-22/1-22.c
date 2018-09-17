@@ -46,11 +46,11 @@ int main(void) {
 			printf("%d\n", posCounter);
 			posCounter = 0;
 		} else {
-			if (posCounter > SOFTLINEEND) {
+			if (posCounter >= SOFTLINEEND) {
 				if (c == ' ') {
 					printf(" %d\n", posCounter);
 					posCounter = 0;
-				} else if (posCounter > HARDLINEEND) {
+				} else if (posCounter >= HARDLINEEND) {
 					printf("-%d\n", posCounter);
 					posCounter = 0;
 					printf("%c", c);
