@@ -1,12 +1,15 @@
 /**
- * copies input into output, and replaces 1+ blanks with 1 blank
+ * 1-22		write program to fold any lines at the nth column. Do something 'smart' with long lines
+ * notables		no tabs (tabs just requires additional previous code)
+ * 				store word in array
  */
 
 #include <stdio.h>
 #include <windows.h>
-
-#define FALSE 0
+#define SOFTLINEEND 30
+#define HARDLINEEND 60
 #define TRUE 1
+#define FALSE 0
 
 /**
  * GetCh courtesy of user 'unoriginal' from http://www.cplusplus.com/forum/articles/19975/
@@ -35,22 +38,34 @@ CHAR GetCh (VOID)
   return EOF;
 }
 
-int main() {
-	int c, flag_oneOrMoreSpace;
-	c = flag_oneOrMoreSpace = 0;
-	while ((c=GetCh()) != EOF) {
-		if (c == ' ') {
-			if (flag_oneOrMoreSpace == FALSE) {
+int main(void) {
+	int c = 0;
+	int posCounter = 0;
+	while ((c = GetCh()) != EOF) {
+		if (c == '\n') {
+			printf("%d\n", posCounter);
+			posCounter = 0;
+		} else {
+			if (posCounter > SOFTLINEEND) {
+				if (c == ' ') {
+					printf(" %d\n", posCounter);
+					posCounter = 0;
+				} else if (posCounter > HARDLINEEND) {
+					printf("-%d\n", posCounter);
+					posCounter = 0;
+					printf("%c", c);
+					posCounter++; //redundant two lines, but visually to see a reset and first character.
+				} else {
+					printf("%c", c);
+					posCounter++;
+				}
+			} else {
 				printf("%c", c);
-				flag_oneOrMoreSpace = TRUE;
+				posCounter++;
 			}
 		}
-		else {
-			printf("%c", c);
-			if (flag_oneOrMoreSpace == TRUE) {
-				flag_oneOrMoreSpace = FALSE;
-			}
-		}
+		fflush(stdout);
 	}
 	return 0;
 }
+
